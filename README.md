@@ -1,4 +1,6 @@
 # ofxMultiFboBlur
+![Thumbnail](ofxaddons_thumbnail.png)
+
 Keeps FBO blurring at interactive speeds by utilizing a set of incrementally scaled down ofxFboBlur objects, and dynamically blurs and fades between them. 
 
 Requires addons:
@@ -23,4 +25,4 @@ When drawing this, at blurOffset 0.0f the full resolution image is only drawn, a
 
 Each additional level is half the resolution of the previous one.
 
-[Image credit](http://www.nasa.gov/content/pushing-the-boundaries-of-propelling-deep-space-missions-0/)
+[Example image credit](http://www.nasa.gov/content/pushing-the-boundaries-of-propelling-deep-space-missions-0/)
