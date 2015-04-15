@@ -43,6 +43,8 @@ public:
     float getLevelScale(int level);
     
     float getInterpolatedLevel();
+    
+    bool isAllocated();
 
 private:
     float blurOffset;

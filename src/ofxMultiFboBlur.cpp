@@ -46,11 +46,11 @@ float ofxMultiFboBlur::getCrossfade(){
 }
                
 int ofxMultiFboBlur::getWidth(){
-    return getLevel(0)->getSceneFbo().getWidth();
+    return isAllocated() ? getLevel(0)->getSceneFbo().getWidth() : 0;
 }
 
 int ofxMultiFboBlur::getHeight(){
-    return getLevel(0)->getSceneFbo().getHeight();
+    return isAllocated() ? getLevel(0)->getSceneFbo().getHeight() : 0;
 }
 
 void ofxMultiFboBlur::beginDrawScene(){
@@ -164,4 +164,8 @@ void ofxMultiFboBlur::setNumBlurOverlays(int numBlurOverlays){
         ofxFboBlur* fboBlurLevel = getLevel(level);
         fboBlurLevel->numBlurOverlays = this->numBlurOverlays;
     }
+}
+
+bool ofxMultiFboBlur::isAllocated(){
+    return fboBlurLevels.size() > 0;
 }
