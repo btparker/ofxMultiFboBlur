@@ -14,8 +14,10 @@ ofxMultiFboBlur::ofxMultiFboBlur(){
 
 ofxMultiFboBlur::~ofxMultiFboBlur(){
     for(int level = 0; level < fboBlurLevels.size(); level++){
-        delete getLevel(level);
+        delete fboBlurLevels[level];
+        fboBlurLevels[level] = NULL;
     }
+    fboBlurLevels.clear();
 }
 
 void ofxMultiFboBlur::setup(ofFbo::Settings s, int levels, float levelBlurSize, float crossFadePercent){
