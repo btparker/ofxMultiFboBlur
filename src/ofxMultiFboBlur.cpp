@@ -8,26 +8,14 @@
 
 #include "ofxMultiFboBlur.h"
 
-ofxMultiFboBlur::ofxMultiFboBlur(){
-    
-}
-
-ofxMultiFboBlur::~ofxMultiFboBlur(){
-    for(int level = 0; level < fboBlurLevels.size(); level++){
-        delete fboBlurLevels[level];
-        fboBlurLevels[level] = NULL;
-    }
-    fboBlurLevels.clear();
-}
-
 void ofxMultiFboBlur::setup(ofFbo::Settings s, int levels, float levelBlurSize, float crossFadePercent){
     this->levelBlurSize = levelBlurSize;
     this->crossFadePercent = crossFadePercent;
     mask.setup(s, ofxMask::LUMINANCE, true);
     for(int level = 0; level < levels; level++){
-        ofxFboBlur* fboBlurLevel = new ofxFboBlur();
-        fboBlurLevel->setup(s, true, getLevelScale(level));
-        fboBlurLevel->blurOverlayGain = 255;
+        ofxFboBlur fboBlurLevel;
+        fboBlurLevel.setup(s, true, getLevelScale(level));
+        fboBlurLevel.blurOverlayGain = 255;
         fboBlurLevels.push_back(fboBlurLevel);
     }
 }
@@ -130,7 +118,7 @@ ofxFboBlur* ofxMultiFboBlur::getLevel(int level){
         ofLogError("ofxMultiFboBlur::getLevel", "No corresponding level for "+ofToString(level)+", returning NULL");
         return NULL;
     }
-    return fboBlurLevels[level];
+    return &fboBlurLevels[level];
 }
 
 float ofxMultiFboBlur::getBlurOffset(){

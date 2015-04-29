@@ -17,9 +17,6 @@
 class ofxMultiFboBlur{
     
 public:
-    ofxMultiFboBlur();
-    ~ofxMultiFboBlur();
-    
     /// \brief Generates the levels and assigns settings
     ///
     /// \param ofFbo::Settings s Settings to apply to base blur level, and excluding dimension settings to all subsequent blur levels
@@ -74,7 +71,7 @@ private:
     float getCrossfade();
     void drawScaledTexture(ofTexture& tex, float scaleDown);
     
-    deque<ofxFboBlur*> fboBlurLevels;
+    deque<ofxFboBlur> fboBlurLevels;
     
     // Uses ofxMask to blend between levels
     ofxMask mask;
